@@ -1,0 +1,29 @@
+from textblob import TextBlob
+
+# Example sentences translated to English for analysis
+sentences = [
+    "I feel like a happy dog when the beautiful sun shines on my face!",
+    "Everyone stinks, I hate everything!",
+    "A reason is a justification for an action or event."
+]
+# Function to scale sentiment from [-1, 1] to [-100, 100]
+def scale_sentiment(sentiment_score):
+    return sentiment_score * 100
+
+# Analyze sentiment
+sentiment_results = []
+arousal_results = []
+for index, sentence in enumerate(sentences):
+    analysis = TextBlob(sentence)
+    # Scale the sentiment
+    scaled_sentiment = scale_sentiment(analysis.sentiment.polarity)
+    sentiment_results.append({f"sentence {index + 1}": sentence, "scaled_sentiment": scaled_sentiment})
+    arousal_results.append({f"sentence {index + 1}": sentence, "scaled arousal": abs(scaled_sentiment)})
+
+
+for line in zip(sentiment_results,arousal_results):
+    print(line)
+
+#correction for ; arousal [0,100] is computed by the absolute value of the polarity score !
+
+  #PYTHON
