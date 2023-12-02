@@ -17,8 +17,8 @@ def unfalsifiability_score(statement):
         if word in statement.lower():
             score -= 1
 
-    # Ensure the score is within the range of -3 to 3
-    score = max(-3, min(score, 3))
+    # Ensure the score is within the range of -10 to 10
+    score = max(-10, min(score, 10))
 
     return score
 
