@@ -1,0 +1,31 @@
+def unfalsifiability_score(statement):
+    # Define keywords and their associated scores
+    high_unfalsifiability_keywords = ["always", "never", "impossible", "all", "none"]
+    high_falsifiability_keywords = ["sometimes", "may", "perhaps", "under certain conditions"]
+
+    # + A PRIORI BIAS ; BASED ON THEME
+
+    score = 0
+
+    # Check for high unfalsifiability keywords
+    for word in high_unfalsifiability_keywords:
+        if word in statement.lower():
+            score += 1
+
+    # Check for high falsifiability keywords
+    for word in high_falsifiability_keywords:
+        if word in statement.lower():
+            score -= 1
+
+    # Ensure the score is within the range of -3 to 3
+    score = max(-3, min(score, 3))
+
+    return score
+
+# Example usage
+statement = "All swans are always white"
+print(unfalsifiability_score(statement))
+
+#(USE NATURAL LANGUAGE PROCESSING MODELS TO CALCULATE THE FALSIFIABILITY_COEFFICIENT ; SPECIFY DE FACTO UNFALSIFIABILITY / IMMUNISATION STRATEGIES)
+
+#PYTHON
